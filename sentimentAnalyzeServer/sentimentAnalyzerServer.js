@@ -29,8 +29,8 @@ function textEmotion(textToAnalyze,res) {
     let naturalLanguageUnderstanding = getNLUInstance();
 
     const analyzeParams = {
-  'text': textToAnalyze,
-  'features': {
+	'text': textToAnalyze,
+	'features': {
     'entities': {
       'emotion': true,
       'sentiment': true,
@@ -44,7 +44,7 @@ function textEmotion(textToAnalyze,res) {
   },
 };
     
-    naturalLanguageUnderstanding.analyze(analyzeParams)
+   naturalLanguageUnderstanding.analyze(analyzeParams)
         .then(analysisResults => {
             a=analysisResults.result.keywords[0];
             //a=Object.keys(analysisResults.result.keywords);
@@ -59,8 +59,8 @@ function urlEmotion(urlToAnalyze,res) {
     let naturalLanguageUnderstanding = getNLUInstance();
 
     const analyzeParams = {
-  'url': urlToAnalyze,
-  'features': {
+	'url': urlToAnalyze,
+	'features': {
     'entities': {
       'emotion': true,
       'sentiment': true,
@@ -74,7 +74,7 @@ function urlEmotion(urlToAnalyze,res) {
   },
 };
     
-    naturalLanguageUnderstanding.analyze(analyzeParams)
+   naturalLanguageUnderstanding.analyze(analyzeParams)
         .then(analysisResults => {
             res.send(analysisResults.result.keywords[0].emotion);
         }).catch(err => {
@@ -86,8 +86,8 @@ function textSentiment(textToAnalyze,res) {
     let naturalLanguageUnderstanding = getNLUInstance();
 
     const analyzeParams = {
-  'text': textToAnalyze,
-  'features': {
+	'text': textToAnalyze,
+	'features': {
     'entities': {
       'emotion': true,
       'sentiment': true,
@@ -101,7 +101,7 @@ function textSentiment(textToAnalyze,res) {
   },
 };
     
-    naturalLanguageUnderstanding.analyze(analyzeParams)
+   naturalLanguageUnderstanding.analyze(analyzeParams)
         .then(analysisResults => {
              res.send(analysisResults.result.keywords[0].sentiment.label);
         }).catch(err => {
@@ -113,8 +113,8 @@ function urlSentiment(urlToAnalyze,res) {
     let naturalLanguageUnderstanding = getNLUInstance();
 
     const analyzeParams = {
-  'url': urlToAnalyze,
-  'features': {
+	'url': urlToAnalyze,
+	'features': {
     'entities': {
       'emotion': true,
       'sentiment': true,
@@ -128,14 +128,13 @@ function urlSentiment(urlToAnalyze,res) {
   },
 };
     
-    naturalLanguageUnderstanding.analyze(analyzeParams)
+   naturalLanguageUnderstanding.analyze(analyzeParams)
         .then(analysisResults => {
              res.send(analysisResults.result.keywords[0].sentiment.label);
         }).catch(err => {
           res.send(err.toString());
         });
 }
-
 
 
 app.get("/",(req,res)=>{
@@ -155,8 +154,6 @@ app.get("/url/sentiment", (req,res) => {
 app.get("/text/emotion", (req,res) => {
     let textToAnalyze = req.query.text;
     textEmotion(textToAnalyze,res);
-    console.log(res);
-  //  return res.send({"happy":"10","sad":"90"});
 });
 
 app.get("/text/sentiment", (req,res) => {
